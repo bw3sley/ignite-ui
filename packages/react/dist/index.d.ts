@@ -1040,6 +1040,7 @@ declare const Button: _stitches_react_types_styled_component.StyledComponent<"bu
     zIndex: "zIndices";
 }, {}>>;
 interface ButtonProps extends ComponentProps<typeof Button> {
+    as?: ElementType;
 }
 
 declare const Input: _stitches_react_types_styled_component.StyledComponent<"input", {}, {}, _stitches_react_types_css_util.CSS<{}, {
@@ -1662,4 +1663,13 @@ interface CheckboxProps extends ComponentProps<typeof CheckboxContainer> {
 }
 declare function Checkbox(props: CheckboxProps): JSX.Element;
 
-export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps };
+interface MultiStepProps {
+    size: number;
+    currentStep?: number;
+}
+declare function MultiStep({ size, currentStep }: MultiStepProps): JSX.Element;
+declare namespace MultiStep {
+    var displayName: string;
+}
+
+export { Avatar, AvatarProps, Box, BoxProps, Button, ButtonProps, Checkbox, CheckboxProps, Heading, HeadingProps, MultiStep, MultiStepProps, Text, TextArea, TextAreaProps, TextInput, TextInputProps, TextProps };

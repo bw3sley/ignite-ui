@@ -10,6 +10,14 @@ export default {
     src: 'https://github.com/bw3sley.png',
     alt: 'Wesley Bernardes',
   },
+
+  argTypes: {
+    src: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta<AvatarProps>
 
 export const Primary: StoryObj<AvatarProps> = {}

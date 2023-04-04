@@ -1,5 +1,4 @@
-import { ComponentProps } from 'react'
-
+import { ComponentProps, ElementType } from 'react'
 import { styled } from '../styles'
 
 export const Button = styled('button', {
@@ -11,13 +10,12 @@ export const Button = styled('button', {
   textAlign: 'center',
   minWidth: 120,
   boxSizing: 'border-box',
+  padding: '0 $4',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '$2',
-
-  padding: '0 $4',
 
   cursor: 'pointer',
 
@@ -27,18 +25,21 @@ export const Button = styled('button', {
   },
 
   '&:disabled': {
-    backgroundColor: '$gray200',
     cursor: 'not-allowed',
+  },
+
+  '&:focus': {
+    boxShadow: '0 0 0 2px $colors$gray100',
   },
 
   variants: {
     variant: {
       primary: {
         color: '$white',
-        backgroundColor: '$ignite500',
+        background: '$ignite500',
 
         '&:not(:disabled):hover': {
-          backgroundColor: '$ignite300',
+          background: '$ignite300',
         },
 
         '&:disabled': {
@@ -51,12 +52,12 @@ export const Button = styled('button', {
         border: '2px solid $ignite500',
 
         '&:not(:disabled):hover': {
-          backgroundColor: '$ignite500',
+          background: '$ignite500',
           color: '$white',
         },
 
         '&:disabled': {
-          backgroundColor: '$gray200',
+          color: '$gray200',
           borderColor: '$gray200',
         },
       },
@@ -91,4 +92,8 @@ export const Button = styled('button', {
   },
 })
 
-export interface ButtonProps extends ComponentProps<typeof Button> {}
+export interface ButtonProps extends ComponentProps<typeof Button> {
+  as?: ElementType
+}
+
+Button.displayName = 'Button'

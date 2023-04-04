@@ -3131,11 +3131,11 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx4 = jsxWithValidationDynamic;
-        var jsxs3 = jsxWithValidationStatic;
+        var jsx5 = jsxWithValidationDynamic;
+        var jsxs4 = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx4;
-        exports.jsxs = jsxs3;
+        exports.jsx = jsx5;
+        exports.jsxs = jsxs4;
       })();
     }
   }
@@ -3260,6 +3260,7 @@ var Box = styled("div", {
   backgroundColor: "$gray800",
   border: "1px solid $gray600"
 });
+Box.displayName = "Box";
 
 // src/components/Text.tsx
 var Text = styled("p", {
@@ -3270,7 +3271,7 @@ var Text = styled("p", {
   variants: {
     size: {
       xxs: { fontSize: "$xxs" },
-      xs: { fontSize: "$xx" },
+      xs: { fontSize: "$xs" },
       sm: { fontSize: "$sm" },
       md: { fontSize: "$md" },
       lg: { fontSize: "$lg" },
@@ -3288,6 +3289,7 @@ var Text = styled("p", {
     size: "md"
   }
 });
+Text.displayName = "Text";
 
 // src/components/Heading.tsx
 var Heading = styled("h2", {
@@ -3311,6 +3313,7 @@ var Heading = styled("h2", {
     size: "md"
   }
 });
+Heading.displayName = "Heading";
 
 // src/components/Avatar/styles.ts
 import * as Avatar from "@radix-ui/react-avatar";
@@ -3361,27 +3364,29 @@ var Button = styled("button", {
   textAlign: "center",
   minWidth: 120,
   boxSizing: "border-box",
+  padding: "0 $4",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   gap: "$2",
-  padding: "0 $4",
   cursor: "pointer",
   svg: {
     width: "$4",
     height: "$4"
   },
   "&:disabled": {
-    backgroundColor: "$gray200",
     cursor: "not-allowed"
+  },
+  "&:focus": {
+    boxShadow: "0 0 0 2px $colors$gray100"
   },
   variants: {
     variant: {
       primary: {
         color: "$white",
-        backgroundColor: "$ignite500",
+        background: "$ignite500",
         "&:not(:disabled):hover": {
-          backgroundColor: "$ignite300"
+          background: "$ignite300"
         },
         "&:disabled": {
           backgroundColor: "$gray200"
@@ -3391,11 +3396,11 @@ var Button = styled("button", {
         color: "$ignite300",
         border: "2px solid $ignite500",
         "&:not(:disabled):hover": {
-          backgroundColor: "$ignite500",
+          background: "$ignite500",
           color: "$white"
         },
         "&:disabled": {
-          backgroundColor: "$gray200",
+          color: "$gray200",
           borderColor: "$gray200"
         }
       },
@@ -3423,6 +3428,7 @@ var Button = styled("button", {
     size: "md"
   }
 });
+Button.displayName = "Button";
 
 // src/components/TextInput/styles.ts
 var TextInputContainer = styled("div", {
@@ -3503,6 +3509,7 @@ var TextArea = styled("textarea", {
     color: "$gray400"
   }
 });
+TextArea.displayName = "TextArea";
 
 // src/components/Checkbox/index.tsx
 import { Check } from "phosphor-react";
@@ -3563,12 +3570,57 @@ var import_jsx_runtime3 = __toESM(require_jsx_runtime());
 function Checkbox2(props) {
   return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(CheckboxContainer, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(CheckboxIndicator, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Check, { weight: "bold" }) }) });
 }
+
+// src/components/MultiStep/style.ts
+var MultiStepContainer = styled("div", {});
+var Label = styled(Text, {
+  color: "$gray200",
+  defaultVariants: {
+    size: "xs"
+  }
+});
+var Steps = styled("div", {
+  display: "grid",
+  gap: "$2",
+  marginTop: "$1",
+  gridTemplateColumns: "repeat(var(--steps-size), 1fr)"
+});
+var Step = styled("div", {
+  height: "$1",
+  borderRadius: "$px",
+  backgroundColor: "$gray600",
+  variants: {
+    active: {
+      true: {
+        backgroundColor: "$gray100"
+      }
+    }
+  }
+});
+
+// src/components/MultiStep/index.tsx
+var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+function MultiStep({ size, currentStep = 1 }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(MultiStepContainer, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(Label, { children: [
+      "Passo ",
+      currentStep,
+      " de ",
+      size
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Steps, { css: { "--steps-size": size }, children: Array.from({ length: size }, (_, i) => i + 1).map((step) => {
+      return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Step, { active: currentStep >= step }, step);
+    }) })
+  ] });
+}
+MultiStep.displayName = "MultiStep";
 export {
   Avatar2 as Avatar,
   Box,
   Button,
   Checkbox2 as Checkbox,
   Heading,
+  MultiStep,
   Text,
   TextArea,
   TextInput
